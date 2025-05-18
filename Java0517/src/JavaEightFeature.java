@@ -20,7 +20,6 @@ public class JavaEightFeature {
 
   // compariable vs comparator -> figure out
 
-
   // SimpleDateFormat (deprecated)
 
   // Google Guava Lib
