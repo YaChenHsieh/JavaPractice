@@ -106,9 +106,9 @@ public final class Employee {
 //    System.out.println(s == s1);
 //    System.out.println(s == s2);
     // StringBuilder vs StringBuffer --> String immutable  -> mutable string ?
-    // Integer i1 = new Integer(1);
-    // Integer i2 = new Integer(1);
-    // System.out.println(i1 == i2);
+//     Integer i1 = new Integer(1);
+//     Integer i2 = new Integer(1);
+//     System.out.println(i1 == i2);
     // expect output: false;
     // output: true
     // in jdk8:
