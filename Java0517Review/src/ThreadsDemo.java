@@ -1,6 +1,26 @@
+// concurrency vs in parallel
+// # of CPU
+
+// 1CPU: 1 core 1 thread ---> ???
+// ipod -> embedded system SoC -> playing a sound -> 3minutes -> hit play -> thread -> play music
+// play/stop/volume adjust -> physical buttons: interruption signals ->
+
+// (not just java) difference in memory -> process not share memory / thread can share memory
+//  volatile keyword in java
 //What is Thread? -> The smallest execution unit in a program (Process).
 //A program (Process) can have multiple Threads working at the same time.
 //Eg.: An App downloads images and displays UI simultaneously.
+
+// Thread vs Runnable vs Callable
+//  class vs interface vs interface
+// callable: response, runnable: no response
+// callable: exception, runnable: no exception
+
+
+
+
+
+
 
 // Thread vs Process:
 // 1. Thread: A single execution unit in a program. / Share the same MM space with other threads.
