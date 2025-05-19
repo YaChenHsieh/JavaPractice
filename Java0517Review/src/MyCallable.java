@@ -1,4 +1,5 @@
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -36,10 +37,20 @@ public class MyCallable implements Callable<String> {
     Future<String> future1 = executor.submit(task1);
     Future<Integer> future2 = executor.submit(task2);
 
+//    ftureu1: CompletableFuture.runAsync(() -> {}).thenApplyAsync(() ->{})........;
+//    futur2:  CompletableFuture.runAsync(() -> {}).thenApplyAsync(() ->{})........
+//    future3: CompletableFuture.runAsync(() -> {}).thenApplyAsync(() ->{})CompletableFuture.runAsync(() -> {}).thenApplyAsync(() ->{})
+//    future4: CompletableFuture.runAsync(() -> {}).thenApplyAsync(() ->{})
+//
+//        List<CompletableFuture> .joinAll()
+
+    // future1 ----->  task1 -> task3 -> task 5
+    // future2 ----->  task2 -> task4 -> task 6
+
     System.out.println("waiting for results");
 
     // Retrieve the results from the threads
-    String result1 = future1.get();    // Wait for task1 to complete and get result
+    String result1 = future1.get();  // Wait for task1 to complete and get result
     Integer result2 = future2.get();   // Wait for task2 to complete and get result
 
     // Print results
