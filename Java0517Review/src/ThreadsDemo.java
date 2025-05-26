@@ -58,3 +58,43 @@ public class ThreadsDemo {
   }
 
 }
+
+// ThreadPoolExecutor Process
+//Step1:判斷是否可以使用核心執行緒
+//* 如果目前執行中的執行緒數量 < corePoolSize:
+//    → 直接建立新執行緒，立刻執行任務
+//
+//Step2:若核心執行緒都在忙，則嘗試將任務放進 queue(任務佇列)
+//* 如果佇列(workQueue)還有空間:
+//    → 任務會被排隊，等有空閒執行緒時再來執行
+//
+//Step3:如果佇列也滿了，才會開始創建額外的非核心執行緒
+//* 如果目前執行緒數量 < maximumPoolSize:
+//    → 創建新的 thread 來處理任務(屬於非核心執行緒)
+//
+//Step4:如果執行緒數已達上限、佇列也滿了
+//* 任務無法被處理時，就會啟動 拒絕策略(RejectedExecutionHandler)
+//
+//Handler:
+//AbortPolicy(預設):丟出例外(RejectedExecutionException)
+//CallerRunsPolicy:由提交任務的主線程自己執行該任務
+//DiscardPolicy:直接丟掉這個任務，不做任何處理
+//DiscardOldestPolicy:丟掉 queue 裡最舊的任務，把新的任務塞進去
+
+
+
+//                任務進來
+//                     ↓
+//    [1] 還沒達 corePoolSize？
+//    → 建 thread 直接跑
+//                     ↓
+//    [2] 達了 corePoolSize，那 queue 還有空？
+//    → 丟進去 queue
+//                     ↓
+//    [3] queue 也滿了，那還能加 thread？
+//    → 再建 thread 跑（到 maxPoolSize 為止）
+//                     ↓
+//    [4] thread、queue 都滿了
+//    → 啟用 handler 拒絕策略
+
+

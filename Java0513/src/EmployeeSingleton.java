@@ -1,5 +1,11 @@
 import java.util.List;
 
+// Singleton is a design pattern that ensures only one instance of a class exists throughout the entire application.
+// It's commonly used for shared resources such as configuration settings, logging systems, or database connection pools.
+// It restricts object creation through a private constructor and provides a static method to access the single instance.
+// In multithreaded environments, synchronized or double-checked locking is used to ensure thread safety.
+// By using Singleton, we improve performance, reduce memory usage, and maintain consistency across the application.
+
 public class EmployeeSingleton {
 
   private final String lastName;
@@ -10,10 +16,19 @@ public class EmployeeSingleton {
   private final List<Integer> list;
 
   // 1. init the obj first，then always return this only obj -> singleton
+
   private static EmployeeSingleton instance = new EmployeeSingleton();
+//  private static volatile EmployeeSingleton instance = null;  //volatile -> multi-threads can read/write via see the var using this keyword to decorate
 
   // 2. private constructor -> other obj can not use new to get a new instance
-  private EmployeeSingleton(){}
+  private EmployeeSingleton(){
+    this.lastName = "";
+    this.firstName = "";
+    this.email = "";
+    this.password = 0;
+    this.flagged = false;
+    this.list = null;
+  }
 
   // 3. since constructor is private，need to provide method to let other call this class
 

@@ -3,7 +3,7 @@ import java.util.List;
 
 
 // immutable class
-public final class Employee {
+public final class Employee0513 {
 
 
   private final String lastName;
@@ -16,7 +16,7 @@ public final class Employee {
 
 
 
-  public Employee(String lastName, String firstName, String email, Integer password,
+  public Employee0513(String lastName, String firstName, String email, Integer password,
       Boolean flagged,
       List<Integer> list) {
     this.lastName = lastName;
@@ -67,7 +67,7 @@ public final class Employee {
 
     List<Integer> scores = new ArrayList<>();
     scores.add(80);
-    Employee e = new Employee("Lin", "Angel", "angel@example.com", 1234, true, scores);
+    Employee0513 e = new Employee0513("Lin", "Angel", "angel@example.com", 1234, true, scores);
 
 
     // change origin list does not influence Employee list
