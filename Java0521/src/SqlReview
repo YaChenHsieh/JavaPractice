@@ -1,0 +1,24 @@
+** Employee Table
+Employee (
+    id INT,
+    name VARCHAR,
+    department_id INT  // --> foreign key
+)
+
+** Department Table
+Department (
+    id INT,  // --> primary key
+    name VARCHAR
+)
+
+JOIN: Joins department_id in the Employee table with id in the Department table.
+GROUP BY: Group by department.
+Aggregation: Count the number of employees in each department (COUNT(*)).
+
+
+SELECT d.name AS department_name, COUNT(e.id) AS headcount
+FROM Department d
+LEFT JOIN Employee e ON d.id = e.department_id
+GROUP BY d.name
+ORDER BY headcount DESC;
+
