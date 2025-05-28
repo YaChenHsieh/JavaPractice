@@ -1,0 +1,4 @@
+1. Redis is a key-value store. It is not a relational database. It does not have schema, association, or foreign key.
+2. No SQL support No query syntax such as JOIN, GROUP BY, etc.
+3. Suitable for searching a single key
+4. Usually used for caching

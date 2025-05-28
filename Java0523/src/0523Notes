@@ -1,0 +1,23 @@
+Set up Maven
+1. Maven Config -> pom.xml
+   -> Make sure the dependency is correct (Each DB add its own dependency in pom.xml)
+   -> If still have red word waring in importing classes -> (pom.xml--> Add as Maven Project)
+2. Java Class, write the operations
+3. exec Maven
+   -> mvn clean compile
+   -> mvn exec:java -Dexec.mainClass="mongo.MongoDBMain"
+
+Set up DB's (Can share the same Maven)
+1. Create package for each DB
+2. In each package, create the class to connect with the DB
+
+Mongo DB
+1. docker exec -it mongodb mongo (Access the DB in docker)
+2. show dbs // Check which databases are available
+   use testDB // Switch to the database that just used or wanted to read
+   show collections // View the collections in this DB (collection similar to Table in SQLDB)
+   db.users.find() // Query all records in the users collection
+
+Redis DB
+1. docker exec -it redis redis-cli
+2.
