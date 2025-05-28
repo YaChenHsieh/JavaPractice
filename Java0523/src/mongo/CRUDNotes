@@ -1,0 +1,106 @@
+1. Create (Insert Data)
+
+Methods:
+insertOne(Document doc)
+insertMany(List<Document> docs, InsertManyOptions options)
+
+Example:
+// Insert one document
+Document doc = new Document("name", "Angel").append("age", 25);
+collection.insertOne(doc);
+
+// Insert multiple documents
+List<Document> docs = Arrays.asList(
+    new Document("name", "Alice").append("age", 22),
+    new Document("name", "Bob").append("age", 30)
+);
+collection.insertMany(docs);
+
+
+🧠 Notes:
+Document: is used to represent a MongoDB document
+If _id is not provided, MongoDB will auto-generate it
+insertMany() is ordered by default – stops on first error
+Use InsertManyOptions().ordered(false) to allow partial success
+Inserts are not idempotent – running again will insert duplicates
+
+
+2. Read (Query Data)
+
+Methods:
+find()
+find(Filters.eq(...))
+find().limit().sort()
+#Example:
+// Find all documents
+for (Document doc : collection.find()) {
+    System.out.println(doc.toJson());
+}
+
+// Find documents where name = "Angel"
+for (Document doc : collection.find(eq("name", "Angel"))) {
+    System.out.println(doc.toJson());
+}
+
+🧠 Notes:
+Use Filters.eq, gt, lt, and, or, etc.
+Returns a FindIterable<Document>
+You can use limit() and sort()
+MongoDB does not support joins natively, but $lookup can simulate joins in aggregations
+
+3. Update (Modify Data)
+
+Methods:
+updateOne(filter, update)
+updateMany(filter, update)
+replaceOne(...) (rarely used for full document replacement)
+
+#Example:
+// Set age = 30 for the first document with name = "Angel"
+collection.updateOne(eq("name", "Angel"), set("age", 30));
+
+// Increment age by 1 for all users with age > 25
+collection.updateMany(gt("age", 25), inc("age", 1));
+
+
+🧠 Notes:
+Use Updates.set, inc, combine, etc.
+updateOne() updates the first match only
+updateMany() updates all matching documents
+The result includes the number of modified documents
+replaceOne() replaces the entire document
+
+4. Delete (Remove Data)
+
+#Methods:
+deleteOne(filter)
+deleteMany(filter)
+
+#Example:
+// Delete first user with name = "Angel"
+collection.deleteOne(eq("name", "Angel"));
+
+// Delete all users with age < 20
+collection.deleteMany(lt("age", 20));
+
+
+
+
+🧠 Notes:
+Use Filters to define conditions
+deleteOne() deletes only the first match
+deleteMany() deletes all matches
+Be careful with deleteMany(new Document()) – it deletes everything!
+
+
+Common Filters (from com.mongodb.client.model.Filters)
+eq("field", value)   -> Equal
+gt("field", value)    -> Greater than
+lt("field", value)     -> Less than
+and(...), or(...)     ->Combine conditions
+regex("field", "pattern") | Pattern matching
+
+Common Updates (from com.mongodb.client.model.Updates)
+set("field", value)            -> Set a value
+inc("field", value)            -> Increment a number
+combine(set(...), inc(...)) ->  Multiple updates

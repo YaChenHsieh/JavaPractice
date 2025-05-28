@@ -1,0 +1,2 @@
+Installing Morphia Dependency please read in official doc
+https://mvnrepository.com/artifact/dev.morphia.morphia/morphia-core/2.4.15
