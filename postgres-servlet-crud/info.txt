@@ -1,0 +1,34 @@
+1. Set pom.xml Configuration
+2. Build WAR Package
+   - go to the project folder
+   - mvn clean package
+   - in target folder, you will find .war file
+3. Deploy to Tomcat
+   # Go to Tomcat's webapps directory
+   - cd /opt/homebrew/opt/tomcat/libexec/webapps
+   # Stop Tomcat first
+   - ../bin/shutdown.sh
+   # Remove the old exploded directory (important!)
+   - rm -rf crudapp/ (the old project deployed)
+   # Copy new WAR file to libexec/webapps
+   # Restart Tomcat
+   - ../bin/startup.sh
+   OR
+   - ./catalina.sh start
+ 4. Test with Postman
+   - GET http://localhost:8080/crudapp/users
+   - GET http://localhost:8080/crudapp/users?id=1
+
+   - POST http://localhost:8080/crudapp/users
+     Body → x-www-form-urlencoded:
+     - name=Angel
+     - email=angel@example.com
+     - age=28
+
+   - PUT http://localhost:8080/crudapp/users
+     Body → x-www-form-urlencoded:
+     - id=1
+     - name=UpdatedName
+     - email=updated@example.com
+
+   - DELETE http://localhost:8080/crudapp/users?id=1
