@@ -1,0 +1,57 @@
+// The most primitive and lowest-level Servlet specification interface
+// 5 methods
+// init(ServletConfig config) throws ServletException;
+// getServletConfig();
+// service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
+// getServletInfo();
+// destroy();
+
+
+// .setContentType
+// HTML (text/html): Display web pages
+// JSON (application/json): front-end and back-end separation (AJAX, React, Vue, etc.)
+// XML (application/xml): Legacy web services or device integration
+// Text/plain: testing or simple API
+// Binary (application/octet-stream): file download, image upload
+
+Tomcat reads sequential flow
+1. When Tomcat starts, it scans /WEB-INF/web.xml for each webapp.
+2. Create the corresponding Servlet entity according to the settings of <servlet> and <servlet-mapping>.
+3. When a request is received, Tomcat finds out which Servlet to hand it off to based on the URL.
+
+web.xml -> deployment descriptor
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="5.0"> -> Jakarta EE 5.0 format, used by Tomcat to validate XML structure
+
+<servlet>
+  <servlet-name>UserServlet</servlet-name>
+  <servlet-class>com.example.servletapp.servlet.UserServlet</servlet-class>
+</servlet>
+
+
+<servlet-mapping>
+  <servlet-name>UserServlet</servlet-name>
+  <url-pattern>/users</url-pattern>
+</servlet-mapping>
+
+Indicates that when the browser requests /xxxapp/users, it should be handled by UserServlet.
+If you set /users/*, it means that paths such as /users/xxx will also be handed over to this Servlet.
+
+
+
+
+
+                    primite Servlet (implements Servlet)     vs.        HttpServlet
+deliever GET/POST     if else to design the logic            vs.       Auto- dispatched by the container to doGet()、doPost()
+                      eg. if (req.getMethod())
+support RESTful      handwrite the PUT, DELETE logic         vs.        Override doPut()、doDelete()
+begining             need to implement service()             vs.        Override doXXX() methods
+
+
+***
+HttpServlet suit for RESTful -> Methods such as doGet/doPost/doPut auto-handle traffic diversion, which is in line with the REST concept.
+
+
+
+
+
+
